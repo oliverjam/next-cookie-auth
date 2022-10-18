@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { getSession, getUser } from "../lib/database/model.js";
+import { getUserFromSession } from "../lib/database/model.js";
 
 export function getServerSideProps(context) {
   const sid = context.req.cookies.sid;
-  const session = getSession(sid);
-  const user = session ? getUser(session.user_id) : null;
+  const user = getUserFromSession(sid) || null;
   return { props: { user } };
 }
 
