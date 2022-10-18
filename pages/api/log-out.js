@@ -1,4 +1,5 @@
 import { removeSession } from "../../lib/database/model.js";
+import { session_cookie } from "../../lib/cookies.js";
 
 export default function log_in(req, res) {
   switch (req.method) {
@@ -6,7 +7,7 @@ export default function log_in(req, res) {
       const sid = req.cookies.sid;
       removeSession(sid);
       // setting cookie to expire in the past tells browser to remove it
-      res.setHeader("set-cookie", `sid=0; Path=/; Expires=${new Date(0)}`);
+      res.setHeader("set-cookie", session_cookie.clear());
       res.redirect("/");
       break;
     }

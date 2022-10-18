@@ -1,5 +1,5 @@
-import { cookie_options } from "../../lib/auth.js";
 import { getUserByEmail, createSession } from "../../lib/database/model.js";
+import { session_cookie } from "../../lib/cookies.js";
 
 export default function log_in(req, res) {
   switch (req.method) {
@@ -11,7 +11,7 @@ export default function log_in(req, res) {
       }
       const session = createSession(user.id);
       // WARNING: you should really use a library that supports signed cookies to serialize this
-      res.setHeader("set-cookie", `sid=${session.id}; ${cookie_options}`);
+      res.setHeader("set-cookie", session_cookie.write(session.id));
       res.redirect("/");
       break;
     }
