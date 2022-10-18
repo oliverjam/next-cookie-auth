@@ -8,7 +8,7 @@ For some reason it's hard to find a decent example of using standard HTTP cookie
 1. `npm install` in the directory
 1. `npm run dev` to start the dev server
 
-The server persists user/session info in the `db.json` file, so you can see changes as you use the app.
+The server persists user/session info in the `db.sqlite` file.
 
 ## Architecture
 
@@ -38,8 +38,6 @@ There a few important things that you would want in a "real" app:
    Storing passwords in clear text is terrible and super unsafe. You should be using a strong hashing algorithm like BCrypt to hash the passwords before storing them in the DB.
 1. ### Signing cookies
    The session cookies are not signed right now. This means we cannot trust that they haven't been manipulated. Since the session IDs are cryptographically strong 24-character strings there are about 2e+43 possibilities (two followed by 43 zeroes). It's incredibly unlikely anyone could guess one, so there isn't too much risk in letting users mess with their cookie.
-1. ### A real DB
-   This example uses `lowdb` to persist data in a JSON file (both for ease and so you can see what's going on). This isn't a great idea for a production server. You probably want an actual database in a "real" app.
 
 ## Page reloads
 

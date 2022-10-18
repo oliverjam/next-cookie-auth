@@ -1,13 +1,17 @@
-import { cookie_options, verify, saveSession } from "../../lib/auth.js";
+import { cookie_options } from "../../lib/auth.js";
+import { getUserByEmail, createSession } from "../../lib/database/model.js";
 
-export default async function log_in(req, res) {
+export default function log_in(req, res) {
   switch (req.method) {
     case "POST": {
       const { email, password } = req.body;
-      const user = await verify(email, password);
-      const sid = await saveSession({ user_id: user.id });
+      const user = getUserByEmail(email);
+      if (user.password !== password) {
+        throw new Error("Authentication error");
+      }
+      const session = createSession(user.id);
       // WARNING: you should really use a library that supports signed cookies to serialize this
-      res.setHeader("set-cookie", `sid=${sid}; ${cookie_options}`);
+      res.setHeader("set-cookie", `sid=${session.id}; ${cookie_options}`);
       res.redirect("/");
       break;
     }

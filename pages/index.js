@@ -1,17 +1,11 @@
 import Link from "next/link";
 import { getSession, getUser } from "../lib/database/model.js";
 
-export async function getServerSideProps(context) {
-  const props = {};
+export function getServerSideProps(context) {
   const sid = context.req.cookies.sid;
-  if (sid) {
-    // swallow errors as we don't care if session is not found
-    const session = await getSession(sid).catch(() => {});
-    if (session) {
-      props.user = await getUser(session.user_id);
-    }
-  }
-  return { props };
+  const session = getSession(sid);
+  const user = session ? getUser(session.user_id) : null;
+  return { props: { user } };
 }
 
 export default function Home({ user }) {
