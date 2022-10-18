@@ -1,15 +1,13 @@
 {
-  "name": "next-cookie-example",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "lowdb": "^3.0.0",
-    "next": "^12.0.10",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "lowdb": "^4.0.0",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
