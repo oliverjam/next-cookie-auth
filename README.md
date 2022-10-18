@@ -14,11 +14,11 @@ The server persists user/session info in the `db.sqlite` file.
 
 There are three "page routes":
 
-1. ### `pages/index.js`
+1. ### `pages/index.jsx`
    Checks the request cookies to find a session ID. If there is one that means the user is logged in. It uses the session ID to get the session from the DB, then gets the user ID from the session. It uses the user ID to get the user from the DB, then passes the user as a prop to the page component. The page either renders a welcome message, or links to sign up/log in (if there is no session).
-1. ### `pages/log-in.js`
+1. ### `pages/log-in.jsx`
    Renders a form that submits a POST request with the user's email/pw to `/api/log-in`
-1. ### `pages/sign-up.js`
+1. ### `pages/sign-up.jsx`
    Renders a form that submits a POST request with the user's email/pw to `/api/sign-up`
 
 There are three "API routes":
