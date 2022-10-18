@@ -1,0 +1,21 @@
+app = "next-cookie-session"
+
+[env]
+  # Tell Next which port to use
+  PORT = "8080"
+
+[[services]]
+  # This is where our app listens
+  internal_port = 8080
+
+  # This is where Fly listens for https:// connections on the internet
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  # So Fly can show metrics and know if your app breaks (not required)
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"
