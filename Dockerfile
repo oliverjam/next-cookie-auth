@@ -25,12 +25,7 @@ FROM node:16-alpine AS runner
 WORKDIR /app
 # Set NODE_ENV="production" to enable certain prod-only Next features
 ENV NODE_ENV production
-# Create a new user on the computer to run the app (rather than running as admin)
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
 # Copy the built app files from the previous stage
 COPY --from=builder /app ./
-# Switch to the new user we created above
-USER nextjs
 # Start the Next server
 CMD ["npm", "start"]

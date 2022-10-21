@@ -19,3 +19,7 @@ app = "next-cookie-session"
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
+
+[mounts]
+  source="data"
+  destination="/data"
