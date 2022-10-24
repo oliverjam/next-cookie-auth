@@ -1,9 +1,11 @@
 {
   "name": "next-cookie-auth",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "npm run seed && next start",
+    "seed": "node lib/database/seed.js"
   },
   "dependencies": {
     "better-sqlite3": "^7.6.2",
