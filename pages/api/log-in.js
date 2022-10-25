@@ -6,7 +6,7 @@ export default function log_in(req, res) {
     case "POST": {
       const { email, password } = req.body;
       const user = getUserByEmail(email);
-      if (user.password !== password) {
+      if (!user || user.password !== password) {
         throw new Error("Authentication error");
       }
       const session = createSession(user.id);
