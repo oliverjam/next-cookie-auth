@@ -1,4 +1,4 @@
 /node_modules/
 .next/
 db.sqlite
-/data
+.DS_Store
