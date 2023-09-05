@@ -5,7 +5,7 @@
 # ========================================================= #
 
 # Start a computer with Node installed
-FROM node:16-alpine AS builder
+FROM node:18-alpine AS builder
 # Move into the /app dir
 WORKDIR /app
 # Copy over all the files in this repo
@@ -20,7 +20,7 @@ RUN npm run build
 # ==================== #
 
 # Start a computer with Node installed
-FROM node:16-alpine AS runner
+FROM node:18-alpine AS runner
 # Move into the /app dir
 WORKDIR /app
 # Set NODE_ENV="production" to enable certain prod-only Next features
